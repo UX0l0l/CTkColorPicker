@@ -175,6 +175,44 @@ class AskColor(customtkinter.CTkToplevel):
             
         if str(self.label._fg_color)=="black":
             self.label.configure(text_color="white")
+
+    def update_color_from_entries(self, event=None):
+        try:
+            r = int(self.r_entry.get())
+            g = int(self.g_entry.get())
+            b = int(self.b_entry.get())
+            self.rgb_color = [r, g, b]
+            self.default_hex_color = "#{:02x}{:02x}{:02x}".format(r, g, b)
+            self.update_colors()
+        except ValueError:
+            pass  # Ignore invalid input
+
+    def create_rgb_entries(self):
+        self.r_entry = customtkinter.CTkEntry(master=self.frame, width=60, corner_radius=self.corner_radius)
+        self.r_entry.pack(fill="both", padx=10, pady=(5, 0))
+        self.g_entry = customtkinter.CTkEntry(master=self.frame, width=60, corner_radius=self.corner_radius)
+        self.g_entry.pack(fill="both", padx=10, pady=5)
+        self.b_entry = customtkinter.CTkEntry(master=self.frame, width=60, corner_radius=self.corner_radius)
+        self.b_entry.pack(fill="both", padx=10, pady=(0, 5))
+
+        # Bind the return key to update the color from the entry values
+        self.r_entry.bind("<Return>", self.update_color_from_entries)
+        self.g_entry.bind("<Return>", self.update_color_from_entries)
+        self.b_entry.bind("<Return>", self.update_color_from_entries)
+
+    def update_colors(self):
+        # ... [rest of your update_colors method remains unchanged] ...
+
+        # Update the label to show the hex color
+        self.label.configure(text=str(self.default_hex_color))
+
+        # Update the entry widgets to show the RGB values
+        self.r_entry.delete(0, tkinter.END)
+        self.r_entry.insert(0, str(self.rgb_color[0]))
+        self.g_entry.delete(0, tkinter.END)
+        self.g_entry.insert(0, str(self.rgb_color[1]))
+        self.b_entry.delete(0, tkinter.END)
+        self.b_entry.insert(0, str(self.rgb_color[2]))
             
     def projection_on_circle(self, point_x, point_y, circle_x, circle_y, radius):
         angle = math.atan2(point_y - circle_y, point_x - circle_x)
@@ -206,4 +244,5 @@ class AskColor(customtkinter.CTkToplevel):
         
 if __name__ == "__main__":
     app = AskColor()
+    app.create_rgb_entries()  # Call this method to create the RGB entry widgets
     app.mainloop()
