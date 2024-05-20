@@ -1,8 +1,8 @@
 # CTk Color Picker widget for customtkinter
 # Author: Akash Bora (Akascape)
 
-import tkinter
-import customtkinter
+from tkinter import *
+from customtkinter import *
 from PIL import Image, ImageTk
 import sys
 import os
@@ -10,7 +10,7 @@ import math
 
 PATH = os.path.dirname(os.path.realpath(__file__))
 
-class CTkColorPicker(customtkinter.CTkFrame):
+class CTkColorPicker(CTkFrame):
     
     def __init__(self,
                  master: any = None,
@@ -45,7 +45,7 @@ class CTkColorPicker(customtkinter.CTkFrame):
         
         self.configure(fg_color=self.fg_color)
           
-        self.canvas = tkinter.Canvas(self, height=self.image_dimension, width=self.image_dimension, highlightthickness=0, bg=self.fg_color)
+        self.canvas = Canvas(self, height=self.image_dimension, width=self.image_dimension, highlightthickness=0, bg=self.fg_color)
         self.canvas.bind("<B1-Motion>", self.on_mouse_drag)
 
         self.img1 = Image.open(os.path.join(PATH, 'color_wheel.png')).resize((self.image_dimension, self.image_dimension), Image.Resampling.LANCZOS)
@@ -57,16 +57,16 @@ class CTkColorPicker(customtkinter.CTkFrame):
         self.canvas.create_image(self.image_dimension/2, self.image_dimension/2, image=self.wheel)
         self.set_initial_color(initial_color)
         
-        self.brightness_slider_value = customtkinter.IntVar()
+        self.brightness_slider_value = IntVar()
         self.brightness_slider_value.set(255)
         
-        self.slider = customtkinter.CTkSlider(master=self, width=20, border_width=self.slider_border,
+        self.slider = CTkSlider(master=self, width=20, border_width=self.slider_border,
                                               button_length=15, progress_color=self.default_hex_color, from_=0, to=255,
                                               variable=self.brightness_slider_value, number_of_steps=256,
                                               button_corner_radius=self.corner_radius, corner_radius=self.corner_radius,
                                               command=lambda x:self.update_colors(), orientation=orientation, **slider_kwargs)
         
-        self.label = customtkinter.CTkLabel(master=self, text_color="#000000", width=10, fg_color=self.default_hex_color,
+        self.label = CTkLabel(master=self, text_color="#000000", width=10, fg_color=self.default_hex_color,
                                             corner_radius=self.corner_radius, text=self.default_hex_color, wraplength=1)
         if orientation=="vertical":
             self.canvas.pack(pady=20, side="left", padx=(10,0))
