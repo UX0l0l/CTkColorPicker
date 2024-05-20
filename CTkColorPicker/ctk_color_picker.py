@@ -223,17 +223,17 @@ class AskColor(CTkToplevel):
         
         self.r_label = CTkLabel(master=rgb_frame, text="R", width=60)
         self.r_label.grid(row=0, column=0, padx=(0, 5))
-        self.r_entry = CTkEntry(master=rgb_frame, width=60, corner_radius=self.corner_radius)
+        self.r_entry = CTkEntry(master=rgb_frame, width=60, corner_radius=self.corner_radius, textvariable=StringVar(value=self.default_rgb[0]))
         self.r_entry.grid(row=0, column=1, padx=(0, 5))
         
         self.g_label = CTkLabel(master=rgb_frame, text="G", width=60)
         self.g_label.grid(row=1, column=0, padx=(0, 5))
-        self.g_entry = CTkEntry(master=rgb_frame, width=60, corner_radius=self.corner_radius)
+        self.g_entry = CTkEntry(master=rgb_frame, width=60, corner_radius=self.corner_radius, textvariable=StringVar(value=self.default_rgb[1]))
         self.g_entry.grid(row=1, column=1, padx=(0, 5))
         
         self.b_label = CTkLabel(master=rgb_frame, text="B", width=60)
         self.b_label.grid(row=2, column=0, padx=(0, 5))
-        self.b_entry = CTkEntry(master=rgb_frame, width=60, corner_radius=self.corner_radius)
+        self.b_entry = CTkEntry(master=rgb_frame, width=60, corner_radius=self.corner_radius, textvariable=StringVar(value=self.default_rgb[2]))
         self.b_entry.grid(row=2, column=1, padx=(0, 5))
 
         # Bind the return key to update the color from the entry values
