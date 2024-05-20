@@ -1,6 +1,6 @@
 # CTk Color Picker for customtkinter
 # Original Author: Akash Bora (Akascape)
-# Contributers: Victor Vimbert-Guerlais (helloHackYnow), UX0l0l
+# Contributors: Victor Vimbert-Guerlais (helloHackYnow), UX0l0l
 
 from tkinter import *
 from customtkinter import *
