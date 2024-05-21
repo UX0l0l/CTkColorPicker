@@ -5,7 +5,6 @@
 from tkinter import *
 from customtkinter import *
 from PIL import Image, ImageTk
-import sys
 import os
 import math
 
