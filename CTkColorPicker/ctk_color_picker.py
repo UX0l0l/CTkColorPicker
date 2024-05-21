@@ -175,7 +175,7 @@ class AskColor(CTkToplevel):
                 g = int(self.g_entry.get())
                 b = int(self.b_entry.get())
                 self.rgb_color = [r, g, b]
-                self.default_hex_color = "#{:02x}{:02x}{:02x}".format(r, g, b)
+                self.default_hex_color = f"#{r:02x}{g:02x}{b:02x}"
             except ValueError:
                 pass  # Ignore invalid input
         else:
@@ -190,7 +190,7 @@ class AskColor(CTkToplevel):
 
                 self.rgb_color = [r, g, b]
 
-                self.default_hex_color = "#{:02x}{:02x}{:02x}".format(*self.rgb_color)
+                self.default_hex_color = f"#{r:02x}{g:02x}{b:02x}"
             except:
                 pass
 
